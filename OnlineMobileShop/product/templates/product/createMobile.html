@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3"><h2>Create Mobile</h2></div>
+        <div class="col-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-3">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{form.as_p}}
+            <input type="submit" value="create">
+
+        </form>
+
+        </div>
+        <div class="col-3">
+
+            <table class="table">
+                <tr>
+                    <td>MobileName</td>
+                    <td>MobileBrand</td>
+                    <td>Price</td>
+                    <td>Action</td>
+                </tr>
+                {% for mobile in mobiles %}
+                <tr>
+                    <td>{{mobile.mobile_name}}</td>
+                    <td>{{mobile.brand}}</td>
+                    <td>{{mobile.price}}</td>
+                    <td><a href="{%url 'mobileedit' mobile.id%}" class="btn btn-success">Edit</a></td>
+                    <td><a href="{%url 'mobileview' mobile.id%}" class="btn btn-primary">View</a></td>
+                    <td><a href="{%url 'mobiledelete' mobile.id%}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

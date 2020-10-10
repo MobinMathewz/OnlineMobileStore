@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "product/base.html" %}
+
+{% block body_block %}
+<h1>View Orders</h1>
+<div class="container">
+
+    <table class="table">
+        <tr>
+            <td>PersonName</td>
+            <td>Phone</td>
+            <td>Email</td>
+            <td>ID</td>
+        </tr>
+        {% for order in qs %}
+        <tr>
+            <td>{{order.personname}}</td>
+            <td>{{order.phone}}</td>
+            <td>{{order.email}}</td>
+            <td><a href="">{{order.productid}}</a></td>
+            <td><a href="{%url 'orderdetail' order.id%}" class="btn btn-link">ViewThisOrder</a></td>
+            <td><a href="{%url 'orderdetail' order.id%}" class="btn btn-danger">CancelOrder</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}
